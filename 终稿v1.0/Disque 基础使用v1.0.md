@@ -38,7 +38,6 @@ Disque的一些特性：
 
 
 
-
 ## 安装与运行
 
 1. 执行命令 `git clone https://github.com/antirez/disque.git` ，使用 Git 克隆 Disque 的项目文件夹。
@@ -51,7 +50,7 @@ Disque的一些特性：
 
 5. 执行 `cd src` 命令，进入 `src` 文件夹，里面有编译好的 Disque 服务器文件 `disque-server` 和 Disque 客户端文件 `disque` 。
 
-   ​
+
 
 ## 搭建单节点集群
 
@@ -81,7 +80,7 @@ Disque根目录下运行
 
 假定在本地端口7711, 7712， 7713中运行了三个Disque服务。为了加入集群，可以在Disque文件根目录下在命令行运行以下命令：
 
-`./src/disque -h 127.0.0.1 -p 7711 cluster meet 127.0.0.1 7712`
+`./src/disque -h 127.0.0.1 -p 7711 cluster meet 127.0.0.1 7712`  
 `./src/disque -h 127.0.0.1 -p 7711 cluster meet 127.0.0.1 7713`
 
 或者先运行Disque命令行工具：
@@ -687,7 +686,7 @@ CLUSTER FORGET <old-node-id>
 - 可以使用`CLUSTER LEAVING no `来重新标记为正常集群节点
 
 
-- 对于离开集群的目标节点，需要多次执行`CLUSTER FORGET <old-node-id>`来删除联结的旧集群节点。更有效的方法是，直接删除对应的nodes.conf文件，将清空节点所有的集群信息。
+- 对于离开集群的目标节点，需要多次执行`CLUSTER FORGET <old-node-id>`来删除联结的旧集群节点。更有效的方法是，直接删除对应的nodes.conf文件，将清空节点所有的集群信息
 
 
 
@@ -719,7 +718,6 @@ D- | dcb833cf | 8YL1NT17e9+wsA/09NqxscQI | 05a1
 
 ```
 P(100,2^32) = .000001164
-
 ```
 
 在发生碰撞的情况下， 工作进程可能会做出不高效的选择。
@@ -754,12 +752,12 @@ RETRY = 0  的任务，只会被最多消费一次， 并且在  ADDJOB 的时�
 
 1. 任务的REPLICATE 并不会动态的检查确保满足设置。REPLICATION = 2的任务，如果存有任务副本的有效节点先后失效（即便间隔一定时长），在未开启AOF的情况下，任务会丢失。
 2. 任务一般情况下会在唯一的有效节点保持queued状态，其他副本节点保持active状态。如果原节点失效，会在随机一个有效副本节点requeue, 状态从active转变为queued。
-3. 单节点开启AOF情况和多节点集群情况一样，能够保证任务数据恢复。但需要等待RETRY时间到达，任务状态从active变成queued，才能`GETJOB`取出任务。
+3. 单节点开启AOF情况和多节点集群情况一样，能够保证任务数据恢复。但需要等待RETRY时间到达，任务状态从active变成queued，才能`GETJOB`取出任务。 
 
 
 
 
-##PYTHON客户端
+## PYTHON客户端
 
 - [disq](https://github.com/ryansb/disq)（[PyPi](https://pypi.python.org/pypi/disq)）
 - [pydisque](https://github.com/ybrs/pydisque)（[PyPi](https://pypi.python.org/pypi/pydisque)）
